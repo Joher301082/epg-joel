@@ -1,0 +1,132 @@
+{
+  "generated_at_venezuela": "2026-09-28T00:28:46.811402-04:00",
+  "window_hours": 36,
+  "total_live_entries": 6051,
+  "matched_entries": 2987,
+  "unique_matched_channel_ids": 2790,
+  "unique_channels_with_programmes": 1586,
+  "programme_rows": 68842,
+  "unmatched_entries": 3064,
+  "groups_with_most_missing": [
+    [
+      "ADULTOS (XXX)",
+      403
+    ],
+    [
+      "EX-JU (CRO-SRB-BIH)",
+      341
+    ],
+    [
+      "NFL║NFL SD ║NCAAF",
+      188
+    ],
+    [
+      "FRANCE",
+      168
+    ],
+    [
+      "GERMANY",
+      165
+    ],
+    [
+      "ESPAÑA",
+      160
+    ],
+    [
+      "USA: CINEMA & ENTERTAINMENT",
+      155
+    ],
+    [
+      "PORTUGAL",
+      133
+    ],
+    [
+      "NETHERLANDS (PAISES BAJOS)",
+      125
+    ],
+    [
+      "VIX+║ DAZN",
+      119
+    ],
+    [
+      "INDIA",
+      118
+    ],
+    [
+      "SEC+ ║ TSN+",
+      114
+    ],
+    [
+      "CBS (REGIONALES)",
+      113
+    ],
+    [
+      "ITALIA",
+      110
+    ],
+    [
+      "HUNGRIA",
+      101
+    ],
+    [
+      "FOX NEWS",
+      99
+    ],
+    [
+      "CANADA",
+      81
+    ],
+    [
+      "BULGARIA",
+      80
+    ],
+    [
+      "SPORTS USA",
+      75
+    ],
+    [
+      "PPV || PEACOCK",
+      70
+    ],
+    [
+      "SUIZA",
+      64
+    ],
+    [
+      "UK SPORTS",
+      58
+    ],
+    [
+      "NBA",
+      57
+    ],
+    [
+      "ESPAÑA CINE Y SERIES",
+      57
+    ],
+    [
+      "FUTBOL ESPAÑA",
+      53
+    ],
+    [
+      "USA",
+      52
+    ],
+    [
+      "CHAMPION║UEFA LEAGUE",
+      50
+    ],
+    [
+      "MLB",
+      50
+    ],
+    [
+      "NBC",
+      50
+    ],
+    [
+      "FLOSPORTS / DIRTVision",
+      48
+    ]
+  ]
+}
