@@ -307,6 +307,55 @@ def write_custom_channels(chosen, path):
 
     ET.ElementTree(root).write(path, encoding="utf-8", xml_declaration=True)
 
+def split_channels_file(path, out_dir, chunk_size=140):
+    root = ET.parse(path).getroot()
+    channels = list(root.findall("channel"))
+    out_dir = Path(out_dir)
+    out_dir.mkdir(exist_ok=True)
+    chunks = []
+
+    for i in range(0, len(channels), chunk_size):
+        chunk_root = ET.Element("channels")
+        for channel in channels[i:i + chunk_size]:
+            chunk_root.append(copy.deepcopy(channel))
+        chunk_path = out_dir / f"channels_{i // chunk_size:03d}.xml"
+        ET.ElementTree(chunk_root).write(
+            chunk_path,
+            encoding="utf-8",
+            xml_declaration=True,
+        )
+        chunks.append(chunk_path)
+
+    return chunks
+
+
+def merge_guides(guide_paths, output_path):
+    merged = ET.Element("tv", {"generator-info-name": "EPG Joel raw merged"})
+    seen_channels = set()
+
+    for path in guide_paths:
+        if not Path(path).exists():
+            continue
+        try:
+            root = ET.parse(path).getroot()
+        except Exception:
+            continue
+
+        for channel in root.findall("channel"):
+            cid = channel.get("id", "")
+            if cid and cid not in seen_channels:
+                merged.append(copy.deepcopy(channel))
+                seen_channels.add(cid)
+
+        for programme in root.findall("programme"):
+            merged.append(copy.deepcopy(programme))
+
+    ET.ElementTree(merged).write(
+        output_path,
+        encoding="utf-8",
+        xml_declaration=True,
+    )
+
 def parse_xmltv_datetime(value):
     if not value:
         return None
@@ -456,20 +505,40 @@ def main():
 
     write_custom_channels(chosen, custom_channels)
 
-    command = [
-        "npm", "run", "grab", "---",
-        f"--channels={custom_channels.resolve()}",
-        f"--output={raw_guide.resolve()}",
-        "--days=2",
-        "--maxConnections=12",
-        "--timeout=30000",
-    ]
+    chunks_dir = work_dir / "channel_chunks"
+    guide_parts_dir = work_dir / "guide_parts"
+    guide_parts_dir.mkdir(exist_ok=True)
+    chunks = split_channels_file(custom_channels, chunks_dir, chunk_size=140)
 
-    print("Descargando programación...")
-    result = subprocess.run(command, cwd=args.epg_dir)
+    print(f"Descargando programación en {len(chunks)} lotes...")
+    guide_parts = []
 
-    if result.returncode != 0 or not raw_guide.exists():
-        raise SystemExit("Falló la descarga de programación desde iptv-org/epg.")
+    for index, chunk in enumerate(chunks, start=1):
+        part = guide_parts_dir / f"guide_{index:03d}.xml"
+        command = [
+            "npm", "run", "grab", "---",
+            f"--channels={chunk.resolve()}",
+            f"--output={part.resolve()}",
+            "--days=2",
+            "--maxConnections=4",
+            "--timeout=30000",
+        ]
+
+        print(f"Lote {index}/{len(chunks)}...")
+        env = dict(__import__("os").environ)
+        env["NODE_OPTIONS"] = "--max-old-space-size=4096"
+        result = subprocess.run(command, cwd=args.epg_dir, env=env)
+
+        if result.returncode == 0 and part.exists():
+            guide_parts.append(part)
+        else:
+            print(f"Advertencia: el lote {index} falló; se continúa con los demás.")
+
+    if not guide_parts:
+        raise SystemExit("No se pudo descargar ningún lote de programación.")
+
+    print(f"Uniendo {len(guide_parts)} lotes de programación...")
+    merge_guides(guide_parts, raw_guide)
 
     build_final(
         raw_guide,
