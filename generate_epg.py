@@ -83,9 +83,32 @@ def country_from_source(src):
     return None
 
 def parse_m3u(url):
-    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(request, timeout=90) as response:
-        data = response.read().decode("utf-8", errors="replace")
+    url = (url or "").strip()
+    candidates = [url]
+    # Algunos proveedores IPTV en el puerto 8080 solo sirven HTTP.
+    # Si el secreto fue pegado como HTTPS, reintentamos automáticamente por HTTP.
+    if url.startswith("https://"):
+        candidates.append("http://" + url[len("https://"):])
+
+    data = None
+    last_error = None
+    for candidate in candidates:
+        try:
+            request = urllib.request.Request(
+                candidate,
+                headers={"User-Agent": "Mozilla/5.0"}
+            )
+            with urllib.request.urlopen(request, timeout=90) as response:
+                data = response.read().decode("utf-8", errors="replace")
+            if data:
+                break
+        except Exception as exc:
+            last_error = exc
+
+    if data is None:
+        raise RuntimeError(
+            "No se pudo descargar la lista IPTV con HTTP/HTTPS disponibles."
+        ) from last_error
 
     lines = data.splitlines()
     entries = []
