@@ -1,0 +1,61 @@
+name: Actualizar EPG Joel
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 2,8,14,20 * * *"
+  push:
+    paths:
+      - "generate_epg.py"
+      - ".github/workflows/update-epg.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-update
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.20.0"
+
+      - name: Descargar motor iptv-org/epg
+        run: git clone --depth 1 -b master https://github.com/iptv-org/epg.git iptv-epg
+
+      - name: Instalar motor EPG
+        run: npm ci --prefix iptv-epg
+
+      - name: Reconstruir guía de 36 horas
+        env:
+          IPTV_M3U_URL: ${{ secrets.IPTV_M3U_URL }}
+          TZ: America/Caracas
+        run: |
+          python generate_epg.py             --m3u-url "$IPTV_M3U_URL"             --epg-dir iptv-epg             --output EPG_Joel_36h.xml             --report coverage.json
+
+      - name: Publicar nueva EPG sin cambiar URL
+        run: |
+          git config user.name "epg-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add EPG_Joel_36h.xml coverage.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "Actualiza EPG 36h"
+            git push
+          fi
