@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-09-28T20:52:50.113606-04:00",
+  "generated_at_venezuela": "2026-09-29T05:12:01.082327-04:00",
   "window_hours": 36,
-  "total_live_entries": 6051,
-  "matched_entries": 2987,
-  "unique_matched_channel_ids": 2790,
-  "unique_channels_with_programmes": 1589,
-  "programme_rows": 66767,
+  "total_live_entries": 6050,
+  "matched_entries": 2986,
+  "unique_matched_channel_ids": 2789,
+  "unique_channels_with_programmes": 1600,
+  "programme_rows": 69228,
   "unmatched_entries": 3064,
   "groups_with_most_missing": [
     [
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      340
+      338
     ],
     [
       "NFL║NFL SD ║NCAAF",
