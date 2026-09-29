@@ -1,20 +1,24 @@
 {
-  "generated_at_venezuela": "2026-09-28T13:20:02.602794-04:00",
+  "generated_at_venezuela": "2026-09-28T20:52:50.113606-04:00",
   "window_hours": 36,
   "total_live_entries": 6051,
   "matched_entries": 2987,
   "unique_matched_channel_ids": 2790,
-  "unique_channels_with_programmes": 1694,
-  "programme_rows": 65631,
+  "unique_channels_with_programmes": 1589,
+  "programme_rows": 66767,
   "unmatched_entries": 3064,
   "groups_with_most_missing": [
     [
       "ADULTOS (XXX)",
-      388
+      403
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      338
+      340
+    ],
+    [
+      "NFL║NFL SD ║NCAAF",
+      188
     ],
     [
       "FRANCE",
@@ -27,10 +31,6 @@
     [
       "ESPAÑA",
       160
-    ],
-    [
-      "NFL║NFL SD ║NCAAF",
-      156
     ],
     [
       "USA: CINEMA & ENTERTAINMENT",
@@ -53,16 +53,16 @@
       118
     ],
     [
+      "SEC+ ║ TSN+",
+      114
+    ],
+    [
       "CBS (REGIONALES)",
       113
     ],
     [
       "ITALIA",
       110
-    ],
-    [
-      "SEC+ ║ TSN+",
-      107
     ],
     [
       "HUNGRIA",
@@ -81,6 +81,10 @@
       80
     ],
     [
+      "SPORTS USA",
+      75
+    ],
+    [
       "PPV || PEACOCK",
       70
     ],
@@ -93,12 +97,12 @@
       58
     ],
     [
-      "ESPAÑA CINE Y SERIES",
+      "NBA",
       57
     ],
     [
-      "NBA",
-      56
+      "ESPAÑA CINE Y SERIES",
+      57
     ],
     [
       "FUTBOL ESPAÑA",
@@ -109,6 +113,10 @@
       52
     ],
     [
+      "CHAMPION║UEFA LEAGUE",
+      50
+    ],
+    [
       "MLB",
       50
     ],
@@ -117,15 +125,7 @@
       50
     ],
     [
-      "SPORTS USA",
-      49
-    ],
-    [
       "FLOSPORTS / DIRTVision",
-      48
-    ],
-    [
-      "CHAMPION║UEFA LEAGUE",
       48
     ]
   ]
