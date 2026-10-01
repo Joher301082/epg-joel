@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-09-30T20:25:25.642116-04:00",
+  "generated_at_venezuela": "2026-10-01T05:38:51.073365-04:00",
   "window_hours": 36,
   "total_live_entries": 6050,
   "matched_entries": 2987,
   "unique_matched_channel_ids": 2790,
-  "unique_channels_with_programmes": 1598,
-  "programme_rows": 65293,
+  "unique_channels_with_programmes": 1596,
+  "programme_rows": 69672,
   "unmatched_entries": 3063,
   "groups_with_most_missing": [
     [
@@ -30,7 +30,7 @@
     ],
     [
       "ESPAÑA",
-      161
+      159
     ],
     [
       "USA: CINEMA & ENTERTAINMENT",
@@ -38,7 +38,7 @@
     ],
     [
       "PORTUGAL",
-      133
+      139
     ],
     [
       "NETHERLANDS (PAISES BAJOS)",
@@ -62,7 +62,7 @@
     ],
     [
       "ITALIA",
-      110
+      109
     ],
     [
       "HUNGRIA",
