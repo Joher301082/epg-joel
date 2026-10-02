@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-10-02T05:11:03.818860-04:00",
+  "generated_at_venezuela": "2026-10-02T15:45:20.215935-04:00",
   "window_hours": 36,
   "total_live_entries": 6050,
   "matched_entries": 2987,
   "unique_matched_channel_ids": 2790,
-  "unique_channels_with_programmes": 1588,
-  "programme_rows": 67937,
+  "unique_channels_with_programmes": 1603,
+  "programme_rows": 58292,
   "unmatched_entries": 3063,
   "groups_with_most_missing": [
     [
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      341
+      340
     ],
     [
       "NFL║NFL SD ║NCAAF",
@@ -38,7 +38,7 @@
     ],
     [
       "PORTUGAL",
-      132
+      133
     ],
     [
       "NETHERLANDS (PAISES BAJOS)",
@@ -93,15 +93,15 @@
       64
     ],
     [
-      "ESPAÑA CINE Y SERIES",
-      60
-    ],
-    [
       "UK SPORTS",
       58
     ],
     [
       "NBA",
+      57
+    ],
+    [
+      "ESPAÑA CINE Y SERIES",
       57
     ],
     [
