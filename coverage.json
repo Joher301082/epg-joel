@@ -1,20 +1,24 @@
 {
-  "generated_at_venezuela": "2026-10-05T05:50:51.157002-04:00",
+  "generated_at_venezuela": "2026-10-05T17:52:34.326237-04:00",
   "window_hours": 36,
-  "total_live_entries": 6047,
-  "matched_entries": 2986,
-  "unique_matched_channel_ids": 2789,
-  "unique_channels_with_programmes": 1681,
-  "programme_rows": 71589,
-  "unmatched_entries": 3061,
+  "total_live_entries": 6210,
+  "matched_entries": 3127,
+  "unique_matched_channel_ids": 2925,
+  "unique_channels_with_programmes": 1617,
+  "programme_rows": 57783,
+  "unmatched_entries": 3083,
   "groups_with_most_missing": [
     [
       "ADULTOS (XXX)",
-      388
+      403
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      341
+      339
+    ],
+    [
+      "NFL║NFL SD ║NCAAF",
+      188
     ],
     [
       "FRANCE",
@@ -29,16 +33,16 @@
       161
     ],
     [
-      "NFL║NFL SD ║NCAAF",
-      156
-    ],
-    [
       "USA: CINEMA & ENTERTAINMENT",
       155
     ],
     [
+      "RUMANIA",
+      142
+    ],
+    [
       "PORTUGAL",
-      138
+      133
     ],
     [
       "NETHERLANDS (PAISES BAJOS)",
@@ -53,16 +57,16 @@
       118
     ],
     [
+      "SEC+ ║ TSN+",
+      114
+    ],
+    [
       "CBS (REGIONALES)",
       113
     ],
     [
       "ITALIA",
       111
-    ],
-    [
-      "SEC+ ║ TSN+",
-      109
     ],
     [
       "HUNGRIA",
@@ -74,11 +78,15 @@
     ],
     [
       "CANADA",
-      84
+      81
     ],
     [
       "BULGARIA",
       80
+    ],
+    [
+      "SPORTS USA",
+      76
     ],
     [
       "PPV || PEACOCK",
@@ -89,16 +97,16 @@
       64
     ],
     [
-      "ESPAÑA CINE Y SERIES",
-      60
-    ],
-    [
       "UK SPORTS",
       58
     ],
     [
       "NBA",
-      55
+      57
+    ],
+    [
+      "ESPAÑA CINE Y SERIES",
+      57
     ],
     [
       "FUTBOL ESPAÑA",
@@ -109,24 +117,16 @@
       52
     ],
     [
+      "CHAMPION║UEFA LEAGUE",
+      50
+    ],
+    [
       "MLB",
       50
     ],
     [
       "NBC",
       50
-    ],
-    [
-      "SPORTS USA",
-      49
-    ],
-    [
-      "FLOSPORTS / DIRTVision",
-      48
-    ],
-    [
-      "CHAMPION║UEFA LEAGUE",
-      48
     ]
   ]
 }
