@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-10-05T17:52:34.326237-04:00",
+  "generated_at_venezuela": "2026-10-06T05:36:15.903536-04:00",
   "window_hours": 36,
   "total_live_entries": 6210,
   "matched_entries": 3127,
   "unique_matched_channel_ids": 2925,
-  "unique_channels_with_programmes": 1617,
-  "programme_rows": 57783,
+  "unique_channels_with_programmes": 1600,
+  "programme_rows": 68828,
   "unmatched_entries": 3083,
   "groups_with_most_missing": [
     [
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      339
+      340
     ],
     [
       "NFL║NFL SD ║NCAAF",
@@ -42,7 +42,7 @@
     ],
     [
       "PORTUGAL",
-      133
+      139
     ],
     [
       "NETHERLANDS (PAISES BAJOS)",
@@ -86,7 +86,7 @@
     ],
     [
       "SPORTS USA",
-      76
+      75
     ],
     [
       "PPV || PEACOCK",
