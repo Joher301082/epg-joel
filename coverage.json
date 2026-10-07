@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-10-06T20:19:29.293259-04:00",
+  "generated_at_venezuela": "2026-10-07T05:23:18.313670-04:00",
   "window_hours": 36,
   "total_live_entries": 6207,
   "matched_entries": 3124,
   "unique_matched_channel_ids": 2923,
-  "unique_channels_with_programmes": 1617,
-  "programme_rows": 66997,
+  "unique_channels_with_programmes": 1611,
+  "programme_rows": 70278,
   "unmatched_entries": 3083,
   "groups_with_most_missing": [
     [
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      339
+      341
     ],
     [
       "NFL║NFL SD ║NCAAF",
@@ -26,7 +26,7 @@
     ],
     [
       "GERMANY",
-      165
+      166
     ],
     [
       "ESPAÑA",
@@ -66,7 +66,7 @@
     ],
     [
       "ITALIA",
-      111
+      112
     ],
     [
       "HUNGRIA",
