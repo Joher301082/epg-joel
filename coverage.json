@@ -1,11 +1,11 @@
 {
-  "generated_at_venezuela": "2026-10-07T16:25:47.832612-04:00",
+  "generated_at_venezuela": "2026-10-07T20:40:58.470770-04:00",
   "window_hours": 36,
   "total_live_entries": 6207,
   "matched_entries": 3124,
   "unique_matched_channel_ids": 2923,
-  "unique_channels_with_programmes": 1618,
-  "programme_rows": 59894,
+  "unique_channels_with_programmes": 1609,
+  "programme_rows": 68561,
   "unmatched_entries": 3083,
   "groups_with_most_missing": [
     [
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      340
+      339
     ],
     [
       "NFL║NFL SD ║NCAAF",
@@ -30,7 +30,7 @@
     ],
     [
       "ESPAÑA",
-      161
+      159
     ],
     [
       "USA: CINEMA & ENTERTAINMENT",
