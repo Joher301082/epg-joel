@@ -1,12 +1,12 @@
 {
-  "generated_at_venezuela": "2026-10-09T20:34:30.411496-04:00",
+  "generated_at_venezuela": "2026-10-10T05:09:28.559569-04:00",
   "window_hours": 36,
   "total_live_entries": 6202,
-  "matched_entries": 3124,
-  "unique_matched_channel_ids": 2922,
-  "unique_channels_with_programmes": 1613,
-  "programme_rows": 66511,
-  "unmatched_entries": 3078,
+  "matched_entries": 3125,
+  "unique_matched_channel_ids": 2923,
+  "unique_channels_with_programmes": 1629,
+  "programme_rows": 68541,
+  "unmatched_entries": 3077,
   "groups_with_most_missing": [
     [
       "ADULTOS (XXX)",
@@ -14,7 +14,7 @@
     ],
     [
       "EX-JU (CRO-SRB-BIH)",
-      340
+      339
     ],
     [
       "NFL║NFL SD ║NCAAF",
