@@ -48,6 +48,15 @@ jobs:
         run: |
           python generate_epg.py             --m3u-url "$IPTV_M3U_URL"             --epg-dir iptv-epg             --output EPG_Joel_36h.xml             --report coverage.json
 
+      - name: Validar cobertura antes de publicar
+        run: |
+          python - <<'PY'
+          import json,sys
+          with open("coverage.json",encoding="utf-8") as f: report=json.load(f)
+          print("Publicación bloqueada: la validación individual de las 6066 señales, identidad regional, zona horaria y programación futura real todavía no está implementada.")
+          sys.exit(1)
+          PY
+
       - name: Publicar nueva EPG sin cambiar URL
         run: |
           git config user.name "epg-bot"
