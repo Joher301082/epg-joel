@@ -1,12 +1,12 @@
 {
-  "generated_at_venezuela": "2026-10-09T16:00:56.450304-04:00",
+  "generated_at_venezuela": "2026-10-09T20:34:30.411496-04:00",
   "window_hours": 36,
-  "total_live_entries": 6207,
+  "total_live_entries": 6202,
   "matched_entries": 3124,
   "unique_matched_channel_ids": 2922,
-  "unique_channels_with_programmes": 1612,
-  "programme_rows": 58914,
-  "unmatched_entries": 3083,
+  "unique_channels_with_programmes": 1613,
+  "programme_rows": 66511,
+  "unmatched_entries": 3078,
   "groups_with_most_missing": [
     [
       "ADULTOS (XXX)",
