@@ -274,7 +274,7 @@ def choose_matches(targets, sources):
 
         best_score, best_source = ranked[0]
 
-        if best_score < 155:
+        if best_score < 350 or (target["tvg_id"] and best_source["xmltv_id"].lower() != target["tvg_id"].lower()):
             unmatched.append(target)
             continue
 
@@ -391,14 +391,14 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
     input_root = ET.parse(raw_guide).getroot()
     output_root = ET.Element(
         "tv",
-        {"generator-info-name": "EPG Joel 36h - iptv-org"}
+        {"generator-info-name": "EPG Joel - datos fuente sin duraciones inferidas"}
     )
 
     written_channels = set()
     programmes_per_target = Counter()
 
     now = datetime.now(CARACAS)
-    window_end = now + timedelta(hours=36)
+    window_end = now + timedelta(days=30)
 
     for targets in source_to_targets.values():
         for target_id, target in targets.items():
@@ -422,8 +422,8 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
         if not start:
             continue
 
-        if stop is None:
-            stop = start + timedelta(hours=2)
+        if stop is None or stop <= start:
+            continue
 
         start_local = start.astimezone(CARACAS)
         stop_local = stop.astimezone(CARACAS)
@@ -458,7 +458,7 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
 
     report = {
         "generated_at_venezuela": now.isoformat(),
-        "window_hours": 36,
+        "window_hours": 720,
         "total_live_entries": total_targets,
         "matched_entries": len(chosen),
         "unique_matched_channel_ids": len(matched_ids),
@@ -519,7 +519,7 @@ def main():
             "npm", "run", "grab", "---",
             f"--channels={chunk.resolve()}",
             f"--output={part.resolve()}",
-            "--days=2",
+            "--days=30",
             "--maxConnections=4",
             "--timeout=30000",
         ]
