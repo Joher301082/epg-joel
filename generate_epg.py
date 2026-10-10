@@ -188,6 +188,14 @@ def score_candidate(target, source):
     score = 0
 
     if tvg_id and source["xmltv_id"].lower() == tvg_id:
+        # El ID por si solo no prueba identidad: los proveedores lo reutilizan.
+        target_base = base_norm(target["name"] or target["display"])
+        if target_base and source["base"] and target_base != source["base"]:
+            similarity = difflib.SequenceMatcher(
+                None, target_base, source["base"]
+            ).ratio()
+            if similarity < 0.72:
+                return -1000
         score = 350
 
     if target_name and target_name == source["norm"]:
@@ -224,6 +232,24 @@ def score_candidate(target, source):
 
     return score
 
+def ambiguous_target_ids(targets):
+    """Bloquea IDs compartidos por señales distintas: evita EPG regional mezclada."""
+    grouped = defaultdict(list)
+    for target in targets:
+        grouped[target["target_id"].casefold()].append(target)
+
+    ambiguous = set()
+    for channel_id, entries in grouped.items():
+        identities = {base_norm(t["name"] or t["display"]) for t in entries}
+        countries = {
+            country_from_group(t["group"]) for t in entries
+            if country_from_group(t["group"])
+        }
+        if len(identities) > 1 or len(countries) > 1:
+            ambiguous.add(channel_id)
+    return ambiguous
+
+
 def choose_matches(targets, sources):
     by_norm = defaultdict(list)
     by_base = defaultdict(list)
@@ -241,8 +267,14 @@ def choose_matches(targets, sources):
 
     chosen = []
     unmatched = []
+    ambiguous_ids = ambiguous_target_ids(targets)
 
     for target in targets:
+        # Un mismo ID no puede representar distintas señales, aunque coincida
+        # con un catálogo externo: la guía mezclaria programas incompatibles.
+        if target["target_id"].casefold() in ambiguous_ids:
+            unmatched.append(target)
+            continue
         candidates = []
 
         if target["tvg_id"]:
@@ -380,7 +412,8 @@ def parse_xmltv_datetime(value):
 def format_caracas(dt):
     return dt.astimezone(CARACAS).strftime("%Y%m%d%H%M%S %z")
 
-def build_final(raw_guide, chosen, output_path, report_path, total_targets, unmatched):
+def build_final(raw_guide, chosen, output_path, report_path, total_targets, unmatched,
+                ambiguous_count=0, quarantined_count=0):
     source_to_targets = defaultdict(dict)
     group_by_target = {}
 
@@ -396,6 +429,7 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
 
     written_channels = set()
     programmes_per_target = Counter()
+    max_future_stop = None
 
     now = datetime.now(CARACAS)
     window_end = now + timedelta(days=30)
@@ -438,6 +472,8 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
             copy_programme.set("stop", format_caracas(stop))
             output_root.append(copy_programme)
             programmes_per_target[target_id] += 1
+            if max_future_stop is None or stop_local > max_future_stop:
+                max_future_stop = stop_local
 
     ET.ElementTree(output_root).write(
         output_path,
@@ -458,8 +494,14 @@ def build_final(raw_guide, chosen, output_path, report_path, total_targets, unma
 
     report = {
         "generated_at_venezuela": now.isoformat(),
-        "window_hours": 720,
+        "window_hours": round(
+            max(0, (max_future_stop - now).total_seconds() / 3600), 2
+        ) if max_future_stop else 0,
+        "window_hours_requested": 720,
         "total_live_entries": total_targets,
+        "original_inventory_reference_entries": 6066,
+        "ambiguous_target_ids_quarantined": ambiguous_count,
+        "entries_quarantined": quarantined_count,
         "matched_entries": len(chosen),
         "unique_matched_channel_ids": len(matched_ids),
         "unique_channels_with_programmes": len(covered_ids),
@@ -495,6 +537,12 @@ def main():
     print("Descargando inventario IPTV...")
     targets = parse_m3u(args.m3u_url)
     print(f"Entradas de TV en vivo detectadas: {len(targets)}")
+    ambiguous_ids = ambiguous_target_ids(targets)
+    quarantined_count = sum(
+        t["target_id"].casefold() in ambiguous_ids for t in targets
+    )
+    print(f"IDs ambiguos bloqueados: {len(ambiguous_ids)} | "
+          f"Entradas en cuarentena: {quarantined_count}")
 
     print("Leyendo catálogo de iptv-org/epg...")
     sources = load_sources(args.epg_dir)
@@ -547,6 +595,8 @@ def main():
         args.report,
         len(targets),
         unmatched,
+        len(ambiguous_ids),
+        quarantined_count,
     )
 
 if __name__ == "__main__":
